@@ -20,7 +20,7 @@
       }
 
       h1 {
-        color: #525454;
+        color: #fff;
         font-size: 22px;
         margin: 0 0 10px 0;
         text-align: center;
@@ -52,7 +52,7 @@
       }
 
       .options-box {
-        background: #fff;
+        background: #3D3D3D;
         border: 1px solid #999;
         border-radius: 3px;
         height: 100%;
@@ -80,6 +80,7 @@
 
       .text {
         font-size: 12px;
+        color: #fff;
       }
 
       #toggle-drawing {
@@ -160,6 +161,158 @@
 
       //POINT 9 VARIABLES//
       var point9LocationMarkers = [];
+      var baseURL = "https://img.pokemondb.net/sprites/black-white/normal/";
+      var spriteURLs = [baseURL + "bulbasaur.png",
+                        baseURL + "ivysaur.png",
+                        baseURL + "venusaur.png",
+                        baseURL + "charmander.png",
+                        baseURL + "charmeleon.png",
+                        baseURL + "charizard.png",
+                        baseURL + "squirtle.png",
+                        baseURL + "wartortle.png",
+                        baseURL + "blastoise.png",
+                        baseURL + "caterpie.png",
+                        baseURL + "metapod.png",
+                        baseURL + "butterfree.png",
+                        baseURL + "weedle.png",
+                        baseURL + "kakuna.png",
+                        baseURL + "beedrill.png",
+                        baseURL + "pidgey.png",
+                        baseURL + "pidgeotto.png",
+                        baseURL + "pidgeot.png",
+                        baseURL + "rattata.png",
+                        baseURL + "raticate.png",
+                        baseURL + "spearow.png",
+                        baseURL + "fearow.png",
+                        baseURL + "ekans.png",
+                        baseURL + "arbok.png",
+                        baseURL + "pikachu.png",
+                        baseURL + "raichu.png",
+                        baseURL + "sandshrew.png",
+                        baseURL + "sandslash.png",
+                        baseURL + "nidoran-f.png",
+                        baseURL + "nidorina.png",
+                        baseURL + "nidoqueen.png",
+                        baseURL + "nidoran-m.png",
+                        baseURL + "nidorino.png",
+                        baseURL + "nidoking.png",
+                        baseURL + "clefairy.png",
+                        baseURL + "clefable.png",
+                        baseURL + "vulpix.png",
+                        baseURL + "ninetales.png",
+                        baseURL + "jigglypuff.png",
+                        baseURL + "wigglytuff.png",
+                        baseURL + "zubat.png",
+                        baseURL + "golbat.png",
+                        baseURL + "oddish.png",
+                        baseURL + "gloom.png",
+                        baseURL + "vileplume.png",
+                        baseURL + "paras.png",
+                        baseURL + "parasect.png",
+                        baseURL + "venonat.png",
+                        baseURL + "venomoth.png",
+                        baseURL + "diglett.png",
+                        baseURL + "dugtrio.png",
+                        baseURL + "meowth.png",
+                        baseURL + "persian.png",
+                        baseURL + "psyduck.png",
+                        baseURL + "golduck.png",
+                        baseURL + "mankey.png",
+                        baseURL + "primeape.png",
+                        baseURL + "growlithe.png",
+                        baseURL + "arcanine.png",
+                        baseURL + "poliwag.png",
+                        baseURL + "poliwhirl.png",
+                        baseURL + "poliwrath.png",
+                        baseURL + "abra.png",
+                        baseURL + "kadabra.png",
+                        baseURL + "alakazam.png",
+                        baseURL + "machop.png",
+                        baseURL + "machoke.png",
+                        baseURL + "machamp.png",
+                        baseURL + "bellsprout.png",
+                        baseURL + "weepinbell.png",
+                        baseURL + "victreebel.png",
+                        baseURL + "tentacool.png",
+                        baseURL + "tentacruel.png",
+                        baseURL + "geodude.png",
+                        baseURL + "graveler.png",
+                        baseURL + "golem.png",
+                        baseURL + "ponyta.png",
+                        baseURL + "rapidash.png",
+                        baseURL + "slowpoke.png",
+                        baseURL + "slowbro.png",
+                        baseURL + "magnemite.png",
+                        baseURL + "magneton.png",
+                        baseURL + "farfetchd.png",
+                        baseURL + "doduo.png",
+                        baseURL + "dodrio.png",
+                        baseURL + "seel.png",
+                        baseURL + "dewgong.png",
+                        baseURL + "grimer.png",
+                        baseURL + "muk.png",
+                        baseURL + "shellder.png",
+                        baseURL + "cloyster.png",
+                        baseURL + "gastly.png",
+                        baseURL + "haunter.png",
+                        baseURL + "gengar.png",
+                        baseURL + "onix.png",
+                        baseURL + "drowzee.png",
+                        baseURL + "hypno.png",
+                        baseURL + "krabby.png",
+                        baseURL + "kingler.png",
+                        baseURL + "voltorb.png",
+                        baseURL + "electrode.png",
+                        baseURL + "exeggcute.png",
+                        baseURL + "exeggutor.png",
+                        baseURL + "cubone.png",
+                        baseURL + "marowak.png",
+                        baseURL + "hitmonlee.png",
+                        baseURL + "hitmonchan.png",
+                        baseURL + "lickitung.png",
+                        baseURL + "koffing.png",
+                        baseURL + "weezing.png",
+                        baseURL + "rhyhorn.png",
+                        baseURL + "rhydon.png",
+                        baseURL + "chansey.png",
+                        baseURL + "tangela.png",
+                        baseURL + "kangaskhan.png",
+                        baseURL + "horsea.png",
+                        baseURL + "seadra.png",
+                        baseURL + "goldeen.png",
+                        baseURL + "seaking.png",
+                        baseURL + "staryu.png",
+                        baseURL + "starmie.png",
+                        baseURL + "mr-mime.png",
+                        baseURL + "scyther.png",
+                        baseURL + "jynx.png",
+                        baseURL + "electabuzz.png",
+                        baseURL + "magmar.png",
+                        baseURL + "pinsir.png",
+                        baseURL + "tauros.png",
+                        baseURL + "magikarp.png",
+                        baseURL + "gyarados.png",
+                        baseURL + "lapras.png",
+                        baseURL + "ditto.png",
+                        baseURL + "eevee.png",
+                        baseURL + "vaporeon.png",
+                        baseURL + "jolteon.png",
+                        baseURL + "flareon.png",
+                        baseURL + "porygon.png",
+                        baseURL + "omanyte.png",
+                        baseURL + "omastar.png",
+                        baseURL + "kabuto.png",
+                        baseURL + "kabutops.png",
+                        baseURL + "aerodactyl.png",
+                        baseURL + "snorlax.png",
+                        baseURL + "articuno.png",
+                        baseURL + "zapdos.png",
+                        baseURL + "moltres.png",
+                        baseURL + "dratini.png",
+                        baseURL + "dragonair.png",
+                        baseURL + "dragonite.png",
+                        baseURL + "mewtwo.png",
+                        baseURL + "mew.png"];
       //END POINT 9 VARIABLES//
 
 
@@ -175,72 +328,7 @@
 
       function initMap() {
         // Create a styles array to use with the map.
-        var styles = [
-          {
-            featureType: 'water',
-            stylers: [
-              { color: '#19a0d8' }
-            ]
-          },{
-            featureType: 'administrative',
-            elementType: 'labels.text.stroke',
-            stylers: [
-              { color: '#ffffff' },
-              { weight: 6 }
-            ]
-          },{
-            featureType: 'administrative',
-            elementType: 'labels.text.fill',
-            stylers: [
-              { color: '#e85113' }
-            ]
-          },{
-            featureType: 'road.highway',
-            elementType: 'geometry.stroke',
-            stylers: [
-              { color: '#efe9e4' },
-              { lightness: -40 }
-            ]
-          },{
-            featureType: 'transit.station',
-            stylers: [
-              { weight: 9 },
-              { hue: '#e85113' }
-            ]
-          },{
-            featureType: 'road.highway',
-            elementType: 'labels.icon',
-            stylers: [
-              { visibility: 'off' }
-            ]
-          },{
-            featureType: 'water',
-            elementType: 'labels.text.stroke',
-            stylers: [
-              { lightness: 100 }
-            ]
-          },{
-            featureType: 'water',
-            elementType: 'labels.text.fill',
-            stylers: [
-              { lightness: -100 }
-            ]
-          },{
-            featureType: 'poi',
-            elementType: 'geometry',
-            stylers: [
-              { visibility: 'on' },
-              { color: '#f0e4d3' }
-            ]
-          },{
-            featureType: 'road.highway',
-            elementType: 'geometry.fill',
-            stylers: [
-              { color: '#efe9e4' },
-              { lightness: -25 }
-            ]
-          }
-        ];
+        var styles = [{"elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"color":"#f5f5f2"},{"visibility":"on"}]},{"featureType":"administrative","stylers":[{"visibility":"off"}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi.attraction","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"visibility":"on"}]},{"featureType":"poi.business","stylers":[{"visibility":"off"}]},{"featureType":"poi.medical","stylers":[{"visibility":"off"}]},{"featureType":"poi.place_of_worship","stylers":[{"visibility":"off"}]},{"featureType":"poi.school","stylers":[{"visibility":"off"}]},{"featureType":"poi.sports_complex","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#ffffff"},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"visibility":"simplified"},{"color":"#ffffff"}]},{"featureType":"road.highway","elementType":"labels.icon","stylers":[{"color":"#ffffff"},{"visibility":"off"}]},{"featureType":"road.highway","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","stylers":[{"color":"#ffffff"}]},{"featureType":"poi.park","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"color":"#71c8d4"}]},{"featureType":"landscape","stylers":[{"color":"#e5e8e7"}]},{"featureType":"poi.park","stylers":[{"color":"#8ba129"}]},{"featureType":"road","stylers":[{"color":"#ffffff"}]},{"featureType":"poi.sports_complex","elementType":"geometry","stylers":[{"color":"#c7c7c7"},{"visibility":"off"}]},{"featureType":"water","stylers":[{"color":"#a0d3d3"}]},{"featureType":"poi.park","stylers":[{"color":"#91b65d"}]},{"featureType":"poi.park","stylers":[{"gamma":1.51}]},{"featureType":"road.local","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"visibility":"on"}]},{"featureType":"poi.government","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"landscape","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"visibility":"simplified"}]},{"featureType":"road.local","stylers":[{"visibility":"simplified"}]},{"featureType":"road"},{"featureType":"road"},{},{"featureType":"road.highway"}]
 
         // Constructor creates a new map - only center and zoom are required.
         map = new google.maps.Map(document.getElementById('map'), {
@@ -297,7 +385,7 @@
             position: position,
             title: name,
             animation: google.maps.Animation.DROP,
-            icon: point9defaultIcon,
+            icon: spriteURLs[Math.floor(Math.random() * (spriteURLs.length-1))],
             id: i
           });
           // Push the marker to our array of markers.
@@ -306,14 +394,7 @@
           marker.addListener('click', function() {
             populateInfoWindow(this, point9largeInfowindow);
           });
-          // Two event listeners - one for mouseover, one for mouseout,
-          // to change the colors back and forth.
-          marker.addListener('mouseover', function() {
-            this.setIcon(point9highlightedIcon);
-          });
-          marker.addListener('mouseout', function() {
-            this.setIcon(point9defaultIcon);
-          });
+
         }
 
         //load map so it shows all current locations, duplicate code, this is in a function later, but can't get the function call to work, so don't care
@@ -472,13 +553,33 @@
             geocoder.geocode(
             { address: address }, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-                createMarkersForPlaces(results);
+
                 map.setCenter(results[0].geometry.location);
                 map.setZoom(13);
                 
-                //send it to server for storage in database
+                //create marker and info window
+                var point9largeInfowindow = new google.maps.InfoWindow();
                 var lat = results[0].geometry.location.lat();
                 var lng = results[0].geometry.location.lng();
+                var position = {lat: lat, lng: lng}
+
+                // Create a marker per location, and put into markers array.
+                var marker = new google.maps.Marker({
+                  position: position,
+                  title: name,
+                  animation: google.maps.Animation.DROP,
+                  icon: spriteURLs[Math.floor(Math.random() * (spriteURLs.length-1))],
+                  id: spriteURLs.length-1
+                });
+                // Push the marker to our array of markers.
+                point9LocationMarkers.push(marker);
+                // Create an onclick event to open the large infowindow at each marker.
+                marker.addListener('click', function() {
+                  populateInfoWindow(this, point9largeInfowindow);
+                });
+                marker.setMap(map);
+                //send it to server for storage in database
+
                
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
@@ -565,7 +666,7 @@
               var nearStreetViewLocation = data.location.latLng;
               var heading = google.maps.geometry.spherical.computeHeading(
                 nearStreetViewLocation, marker.position);
-                infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
+                infowindow.setContent('<div><h2><b>' + marker.title + '</b></h2></div><div id="pano"></div>');
                 var panoramaOptions = {
                   position: nearStreetViewLocation,
                   pov: {
@@ -576,7 +677,7 @@
               var panorama = new google.maps.StreetViewPanorama(
                 document.getElementById('pano'), panoramaOptions);
             } else {
-              infowindow.setContent('<div>' + marker.title + '</div>' +
+              infowindow.setContent('<div><h2><b>'+ marker.title + '</b></h2></div>' +
                 '<div>No Street View Found</div>');
             }
           }
