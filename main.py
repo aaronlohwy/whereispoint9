@@ -48,7 +48,7 @@ class MainHandler(Handler):
             jsonfile = json.dumps(jsondict)
             point9locsjson.append(jsonfile)
         #return jsonlist
-        self.write(point9locsjson)
+        #self.write(point9locsjson)
         self.render("whereispoint9.html", point9locs = point9locsjson)
 
     def post(self):
@@ -62,7 +62,7 @@ class MainHandler(Handler):
             entry.put()
             postID = entry.key().id() 
             #time.sleep(1) # not always good form to sleep, cuz you make the user wait. I put it just so when the page reloads the data is sure to be there! else the write might come before the art is put inside the database. it will eventually be consistent anyway. check out http://forums.udacity.com/questions/100044559/ascii-page-requires-a-reload-before-a-new-submission-is-displayed-why-ascii_chan-unit-3#cs253 
-            self.write(postID)
+            #self.write(postID)
         else:
             self.write("ERROR YO")
 
