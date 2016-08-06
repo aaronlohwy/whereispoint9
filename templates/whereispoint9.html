@@ -158,6 +158,11 @@
     <script>
       var map;
 
+      //POINT 9 VARIABLES//
+      var point9LocationMarkers = [];
+      //END POINT 9 VARIABLES//
+
+
       // Create a new blank array for all the listing markers.
       var markers = [];
 
@@ -265,17 +270,61 @@
 
         //* START POINT 9 CODE *//
 
-        var existingPoint9Locs = {{point9locs|safe}};
-        var existingLocations = [];
-        for (var i = 0; i < existingPoint9Locs.length; i++) {
-          var dict = JSON.parse(existingPoint9Locs[i]);
-          existingLocations.push(dict);
+        var point9LocsFromDatabaseJSON = {{point9locs|safe}};
+        var point9ExistingLocations = [];
+
+        for (var i = 0; i < point9LocsFromDatabaseJSON.length; i++) {
+          var dict = JSON.parse(point9LocsFromDatabaseJSON[i]);
+          point9ExistingLocations.push(dict);
         }
-        window.alert(existingLocations.length);
-        //var parsedLocs = JSON.parse(existingPoint9Locs);
-        //document.getElementById("demo").innerHTML = parsedLocs;
-        //window.alert(parsedLocs.length);
-        //window.alert(existingPoint9Locs);
+        
+        // Style the markers a bit. This will be our listing marker icon.
+        var point9defaultIcon = makeMarkerIcon('0091ff');
+
+        // Create a "highlighted location" marker color for when the user
+        // mouses over the marker.
+        var point9highlightedIcon = makeMarkerIcon('FFFF24');
+
+        var point9largeInfowindow = new google.maps.InfoWindow();
+
+        for (var i = 0; i < point9ExistingLocations.length; i++) {
+          // Get the position from the location array.
+          var position = {lat: point9ExistingLocations[i].lat, lng: point9ExistingLocations[i].lon}
+          var name = point9ExistingLocations[i].name;
+
+          // Create a marker per location, and put into markers array.
+          var marker = new google.maps.Marker({
+            position: position,
+            title: name,
+            animation: google.maps.Animation.DROP,
+            icon: point9defaultIcon,
+            id: i
+          });
+          // Push the marker to our array of markers.
+          point9LocationMarkers.push(marker);
+          // Create an onclick event to open the large infowindow at each marker.
+          marker.addListener('click', function() {
+            populateInfoWindow(this, point9largeInfowindow);
+          });
+          // Two event listeners - one for mouseover, one for mouseout,
+          // to change the colors back and forth.
+          marker.addListener('mouseover', function() {
+            this.setIcon(point9highlightedIcon);
+          });
+          marker.addListener('mouseout', function() {
+            this.setIcon(point9defaultIcon);
+          });
+        }
+
+        //load map so it shows all current locations, duplicate code, this is in a function later, but can't get the function call to work, so don't care
+        var bounds = new google.maps.LatLngBounds();
+        // Extend the boundaries of the map for each marker and display the marker
+        for (var i = 0; i < point9LocationMarkers.length; i++) {
+          point9LocationMarkers[i].setMap(map);
+          bounds.extend(point9LocationMarkers[i].position);
+        }
+        map.fitBounds(bounds);
+
         // This autocomplete is for use in getting location of .9er
         var point9erLocationSearchBox = new google.maps.places.SearchBox(
             document.getElementById('point9erlocation'));
@@ -291,7 +340,7 @@
         // Listen for the event fired when the user selects a prediction and clicks
         // "go" more details for that place.
         document.getElementById('go-submitpoint9location').addEventListener('click', submitpoint9location);
-
+        document.getElementById('show-everyone').addEventListener('click', showAllPoint9ers);
          //* END POINT 9 CODE *//
 
 
@@ -478,6 +527,17 @@
               }
             });
           }
+        }
+
+
+        function showAllPoint9ers() {
+          var bounds = new google.maps.LatLngBounds();
+          // Extend the boundaries of the map for each marker and display the marker
+          for (var i = 0; i < point9LocationMarkers.length; i++) {
+            point9LocationMarkers[i].setMap(map);
+            bounds.extend(point9LocationMarkers[i].position);
+          }
+          map.fitBounds(bounds);
         }
 
       //* end extra functions for point 9 site *//
