@@ -1,0 +1,11 @@
+
+ 	{% for entry in point9locs %}
+ 		<div>
+			 <form method = "post"> 
+				{{entry.name}} , {{entry.location.lat}} , {{entry.location.lon}}
+				<input type="text" name="entryID" value="{{entry.key().id()}}" readonly><br>
+				<input type="submit" value="delete">
+			</form>
+ 		</div>		
+ 	{% endfor %}
+

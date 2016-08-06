@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 import webapp2
+from webapp2_extras import routes
 import os
 import jinja2
 from google.appengine.ext import db
@@ -66,8 +67,20 @@ class MainHandler(Handler):
         else:
             self.write("ERROR YO")
 
-        
+class AdminHandler(Handler):
+    def get(self):
+        point9locs = db.GqlQuery("SELECT * FROM point9erlocation ORDER BY created DESC") #can also do order by created DESC limit 10
+        point9locs = list(point9locs)
+        self.render("adminportal.html", point9locs = point9locs)
+
+    def post(self):
+        entryID = self.request.get("entryID")
+        entry = point9erlocation.get_by_id(int(entryID))
+        entry.delete()
+        #https://cloud.google.com/appengine/docs/python/datastore/entities
+        self.write("deleted entry with id " + entryID)
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/admin', AdminHandler)
 ], debug=True)

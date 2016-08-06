@@ -285,7 +285,7 @@
 
         // Constructor creates a new map - only center and zoom are required.
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 40.7413549, lng: -73.9980244},
+          center: {lat: 1.290270, lng: 103.8198},
           zoom: 13,
           styles: styles,
           mapTypeControl: false
@@ -327,13 +327,15 @@
         }
 
         //load map so it shows all current locations, duplicate code, this is in a function later, but can't get the function call to work, so don't care
-        var bounds = new google.maps.LatLngBounds();
-        // Extend the boundaries of the map for each marker and display the marker
-        for (var i = 0; i < point9LocationMarkers.length; i++) {
-          point9LocationMarkers[i].setMap(map);
-          bounds.extend(point9LocationMarkers[i].position);
+        if(point9LocationMarkers.length>0){
+          var bounds = new google.maps.LatLngBounds();
+          // Extend the boundaries of the map for each marker and display the marker
+          for (var i = 0; i < point9LocationMarkers.length; i++) {
+            point9LocationMarkers[i].setMap(map);
+            bounds.extend(point9LocationMarkers[i].position);
+          }
+          map.fitBounds(bounds);
         }
-        map.fitBounds(bounds);
 
         // This autocomplete is for use in getting location of .9er
         var point9erLocationSearchBox = new google.maps.places.SearchBox(
@@ -407,7 +409,8 @@
                 };
                 //xhttp.open("GET", "http://localhost:8080/", true);
                 //xhttp.send();
-                xhttp.open("POST", "http://localhost:8080/", true);
+                //xhttp.open("POST", "http://localhost:8080/", true);
+                xhttp.open("POST", "http://whereispoint9.appspot.com/", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send("name="+name+"&latitude="+lat+"&longitude="+lng);
                 //window.alert("YAY " + name + "'s at " + address + "!" + "with lat:" + lat + " and lng: " + lng);
