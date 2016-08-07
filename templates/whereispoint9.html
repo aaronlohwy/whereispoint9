@@ -106,11 +106,12 @@
           <span class="text">Who dis</span>
           <input id="point9ername" type="text" placeholder="">
           <span class="text">Where u</span>
-          <input id="point9erlocation" type="text" placeholder="Ex: Singaporeeeeee">
+          <input id="point9erlocation" type="text" placeholder="Ex: Changi, Singapore">
           <input id="go-submitpoint9location" type="button" value="Put me on the map!">
         </div>
         <div>
            <input id="show-everyone" type="button" value="Show Everyone!">
+           <p id="demo"></p>
         </div>
       </div>
       <div id="map"></div>
@@ -379,6 +380,23 @@
                 var point9largeInfowindow = new google.maps.InfoWindow();
                 var lat = results[0].geometry.location.lat();
                 var lng = results[0].geometry.location.lng();
+                
+                //perturb the location slightly if there is a match - kinda hacky.
+                var minDelta = 0.0001;
+
+                do {
+                  var conflict = false;
+                  for(var i = 0; i < point9LocationMarkers.length; i++){
+                    var existingLat = point9LocationMarkers[i].position.lat();
+                    var existingLng = point9LocationMarkers[i].position.lng();
+                    if(Math.abs(existingLat - lat) < minDelta && Math.abs(existingLng - lng) < minDelta){
+                      lat += Math.floor(Math.random() * 5) * minDelta;
+                      lng += Math.floor(Math.random() * 5) * minDelta;
+                      conflict = true;
+                    }
+                  }
+                } while (conflict)
+
                 var position = {lat: lat, lng: lng}
 
                 // Create a marker per location, and put into markers array.
@@ -389,6 +407,7 @@
                   icon: spriteURLs[Math.floor(Math.random() * (spriteURLs.length-1))],
                   id: spriteURLs.length-1
                 });
+
                 // Push the marker to our array of markers.
                 point9LocationMarkers.push(marker);
                 // Create an onclick event to open the large infowindow at each marker.
